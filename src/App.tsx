@@ -11,6 +11,7 @@ import { twMerge } from 'tailwind-merge';
 import CoffeeCalculator from './components/CoffeeCalculator';
 import EnergyDrinkCalculator from './components/EnergyDrinkCalculator';
 import FastFoodCalculator from './components/FastFoodCalculator';
+import SmokingCalculator from './components/SmokingCalculator';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -72,7 +73,7 @@ function Navbar() {
     <nav className="max-w-7xl mx-auto px-6 py-10 flex justify-center items-center">
       <Link to="/" className="group">
         <h1 className="text-3xl md:text-4xl font-serif font-bold text-ink tracking-tight group-hover:text-sage transition-colors text-center">
-          SmallHabits<span className="text-sage group-hover:text-ink">Calculator</span>
+          Small Habits <span className="text-sage group-hover:text-ink">Calculator</span>
         </h1>
       </Link>
     </nav>
@@ -83,7 +84,7 @@ function Footer() {
   return (
     <footer className="max-w-7xl mx-auto px-6 py-12 mt-20 border-t border-ink/5 text-center">
       <p className="text-sm opacity-50">
-        © {new Date().getFullYear()} SmallHabitsCalculator. Small habits. Big numbers.
+        © {new Date().getFullYear()} Small Habits Calculator. Small habits. Big numbers.
       </p>
       <p className="text-xs opacity-30 mt-2 italic">
         No judgment. Just insight.
@@ -158,8 +159,9 @@ export default function App() {
           <Route path="/how-much-coffee-costs" element={<CoffeeCalculator />} />
           <Route path="/how-much-energy-drinks-cost" element={<EnergyDrinkCalculator />} />
           <Route path="/how-much-fast-food-costs" element={<FastFoodCalculator />} />
+          <Route path="/how-much-smoking-costs" element={<SmokingCalculator />} />
           {/* Placeholder routes for future calculators */}
-          {calculators.filter(c => !["/how-much-coffee-costs", "/how-much-energy-drinks-cost", "/how-much-fast-food-costs"].includes(c.path)).map(calc => (
+          {calculators.filter(c => !["/how-much-coffee-costs", "/how-much-energy-drinks-cost", "/how-much-fast-food-costs", "/how-much-smoking-costs"].includes(c.path)).map(calc => (
             <Route 
               key={calc.path} 
               path={calc.path} 
