@@ -9,6 +9,7 @@ import { Coffee, Zap, Cigarette, Utensils, Ticket, CreditCard, ArrowRight } from
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import CoffeeCalculator from './components/CoffeeCalculator';
+import EnergyDrinkCalculator from './components/EnergyDrinkCalculator';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -154,8 +155,9 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/how-much-coffee-costs" element={<CoffeeCalculator />} />
+          <Route path="/how-much-energy-drinks-cost" element={<EnergyDrinkCalculator />} />
           {/* Placeholder routes for future calculators */}
-          {calculators.filter(c => c.path !== "/how-much-coffee-costs").map(calc => (
+          {calculators.filter(c => !["/how-much-coffee-costs", "/how-much-energy-drinks-cost"].includes(c.path)).map(calc => (
             <Route 
               key={calc.path} 
               path={calc.path} 
