@@ -107,6 +107,11 @@ function Home() {
           <h2 className="text-2xl md:text-3xl font-serif font-bold text-ink/80 mb-4 tracking-tight">
             Small habits. <span className="text-sage italic">Big numbers.</span>
           </h2>
+          <div className="flex items-center gap-2 mb-6">
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-sage/10 text-sage border border-sage/20">
+              Updates in progress
+            </span>
+          </div>
           <p className="text-lg text-ink/60 leading-relaxed max-w-2xl">
             We're often told that small things don't matter. But over time, they tell a story. 
             Explore the long-term impact of your daily choices with curiosity, not pressure.
