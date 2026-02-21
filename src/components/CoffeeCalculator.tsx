@@ -94,6 +94,15 @@ export default function CoffeeCalculator() {
     setDaysPerWeek(clamped.toString());
   };
 
+  const coffeeFacts = [
+    "The average daily coffee drinker spends roughly $1,100 to $1,500 per year on their habit.",
+    "Coffee prices have seen a steady historical growth of about 3% per year over the last decade.",
+    "Switching from a café latte to home-brewed coffee can save the average person over $1,200 annually.",
+    "Inflation quietly adds up: a daily $5 habit today will likely cost closer to $6.50 in ten years."
+  ];
+
+  const randomFact = useMemo(() => coffeeFacts[Math.floor(Math.random() * coffeeFacts.length)], []);
+
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">
       <Link to="/" className="inline-flex items-center text-sm font-medium text-sage hover:underline mb-12">
@@ -225,6 +234,10 @@ export default function CoffeeCalculator() {
                   <h3 className="text-2xl font-serif font-bold mb-6">Food for thought</h3>
                   <div className="text-lg text-ink/70 leading-relaxed space-y-2">
                     {getReflection()}
+                  </div>
+                  <div className="mt-10 pt-8 border-t border-sage/10">
+                    <p className="text-xs font-bold uppercase tracking-widest text-sage mb-2">For context</p>
+                    <p className="text-sm text-ink/50 italic">{randomFact}</p>
                   </div>
                 </div>
               </div>
