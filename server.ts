@@ -43,23 +43,32 @@ async function startServer() {
       console.error("CRITICAL: 'dist' directory not found! Did you run 'npm run build'?");
     }
 
-    // Serve static files with explicit caching and types
-    app.use(express.static(distPath, {
-      maxAge: '1d',
-      index: false // We handle index manually below
+    // Serve static files with explicit MIME types and paths
+    app.use('/assets', express.static(path.join(distPath, 'assets'), {
+      setHeaders: (res, filePath) => {
+        if (filePath.endsWith('.js')) {
+          res.setHeader('Content-Type', 'application/javascript');
+        } else if (filePath.endsWith('.css')) {
+          res.setHeader('Content-Type', 'text/css');
+        }
+      }
     }));
+
+    // Serve other static files from dist root (like favicon, etc)
+    app.use(express.static(distPath));
     
     // Handle SPA routing
     app.get("*", (req, res) => {
+      // Don't serve index.html for missing assets
+      if (req.path.startsWith('/assets/')) {
+        return res.status(404).send("Asset not found");
+      }
+
       const indexPath = path.join(distPath, "index.html");
       if (fs.existsSync(indexPath)) {
         res.sendFile(indexPath);
       } else {
-        res.status(404).send(`
-          <h1>Application Not Ready</h1>
-          <p>The build files were not found in <code>/dist</code>.</p>
-          <p>Please ensure <code>npm run build</code> has completed successfully on the server.</p>
-        `);
+        res.status(404).send("Application Not Ready - index.html missing in /dist");
       }
     });
   }
