@@ -65,6 +65,35 @@ export default function CoffeeCalculator() {
     }
   };
 
+  const handleCostChange = (val: string) => {
+    const num = parseFloat(val);
+    if (isNaN(num)) {
+      setCost('');
+      return;
+    }
+    setCost(Math.max(0, num).toString());
+  };
+
+  const handlePerDayChange = (val: string) => {
+    const num = parseFloat(val);
+    if (isNaN(num)) {
+      setPerDay('');
+      return;
+    }
+    setPerDay(Math.max(0, num).toString());
+  };
+
+  const handleDaysPerWeekChange = (val: string) => {
+    const num = parseInt(val);
+    if (isNaN(num)) {
+      setDaysPerWeek('');
+      return;
+    }
+    // Clamp between 1 and 7
+    const clamped = Math.min(7, Math.max(1, num));
+    setDaysPerWeek(clamped.toString());
+  };
+
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">
       <Link to="/" className="inline-flex items-center text-sm font-medium text-sage hover:underline mb-12">
@@ -98,7 +127,9 @@ export default function CoffeeCalculator() {
             <input 
               type="number" 
               value={cost}
-              onChange={(e) => setCost(e.target.value)}
+              onChange={(e) => handleCostChange(e.target.value)}
+              min="0"
+              step="0.50"
               className="w-full bg-sage/5 border-none rounded-2xl p-4 text-xl font-medium focus:ring-2 focus:ring-sage/20 outline-none transition-all"
               placeholder="5.00"
             />
@@ -108,7 +139,8 @@ export default function CoffeeCalculator() {
             <input 
               type="number" 
               value={perDay}
-              onChange={(e) => setPerDay(e.target.value)}
+              onChange={(e) => handlePerDayChange(e.target.value)}
+              min="0"
               className="w-full bg-sage/5 border-none rounded-2xl p-4 text-xl font-medium focus:ring-2 focus:ring-sage/20 outline-none transition-all"
               placeholder="1"
             />
@@ -118,7 +150,9 @@ export default function CoffeeCalculator() {
             <input 
               type="number" 
               value={daysPerWeek}
-              onChange={(e) => setDaysPerWeek(e.target.value)}
+              onChange={(e) => handleDaysPerWeekChange(e.target.value)}
+              min="1"
+              max="7"
               className="w-full bg-sage/5 border-none rounded-2xl p-4 text-xl font-medium focus:ring-2 focus:ring-sage/20 outline-none transition-all"
               placeholder="5"
             />
