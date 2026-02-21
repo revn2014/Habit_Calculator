@@ -13,6 +13,7 @@ import EnergyDrinkCalculator from './components/EnergyDrinkCalculator';
 import FastFoodCalculator from './components/FastFoodCalculator';
 import SmokingCalculator from './components/SmokingCalculator';
 import LotteryCalculator from './components/LotteryCalculator';
+import SubscriptionCalculator from './components/SubscriptionCalculator';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -162,8 +163,9 @@ export default function App() {
           <Route path="/how-much-fast-food-costs" element={<FastFoodCalculator />} />
           <Route path="/how-much-smoking-costs" element={<SmokingCalculator />} />
           <Route path="/how-much-lottery-costs" element={<LotteryCalculator />} />
+          <Route path="/how-much-subscriptions-cost" element={<SubscriptionCalculator />} />
           {/* Placeholder routes for future calculators */}
-          {calculators.filter(c => !["/how-much-coffee-costs", "/how-much-energy-drinks-cost", "/how-much-fast-food-costs", "/how-much-smoking-costs", "/how-much-lottery-costs"].includes(c.path)).map(calc => (
+          {calculators.filter(c => !["/how-much-coffee-costs", "/how-much-energy-drinks-cost", "/how-much-fast-food-costs", "/how-much-smoking-costs", "/how-much-lottery-costs", "/how-much-subscriptions-cost"].includes(c.path)).map(calc => (
             <Route 
               key={calc.path} 
               path={calc.path} 
